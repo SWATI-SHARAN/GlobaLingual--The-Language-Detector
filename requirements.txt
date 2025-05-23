@@ -1,5 +1,6 @@
 streamlit
 langdetect
-SpeechRecognition
+langcodes
+speechrecognition
 pyaudio
-streamlit-option-menu
+pillow
