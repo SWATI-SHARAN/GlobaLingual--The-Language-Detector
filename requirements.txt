@@ -1,0 +1,5 @@
+streamlit
+langdetect
+SpeechRecognition
+pyaudio
+streamlit-option-menu
