@@ -4,15 +4,35 @@ import speech_recognition as sr
 from streamlit_option_menu import option_menu
 
 # Page config
-st.set_page_config(page_title="GlobaLingual- Language Detector", page_icon="logo1.png", layout="wide")
+st.set_page_config(page_title="GlobaLingual - Language Detector", page_icon="logo1.png", layout="wide")
 
-# Centered logo and heading at top of main screen
-# Center the logo on the main screen
+# Center logo and heading
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
     st.image("logo.png", width=500)
 
-# Enhanced UI Theme CSS
+# Theme selector at the top (replacing sidebar)
+theme = st.radio("🎨 Select Theme", ["Light", "Dark"], horizontal=True)
+
+target_lang_code = st.selectbox(
+    "🌐 Select Output Translation Language",
+    options=["en", "es", "fr", "de", "hi", "zh", "ar", "ru", "ja", "pt"],
+    index=0,
+    format_func=lambda code: {
+        "en": "English",
+        "es": "Spanish",
+        "fr": "French",
+        "de": "German",
+        "hi": "Hindi",
+        "zh": "Chinese",
+        "ar": "Arabic",
+        "ru": "Russian",
+        "ja": "Japanese",
+        "pt": "Portuguese"
+    }.get(code, code)
+)
+
+# Theme CSS
 dark_css = """
 <style>
 body, .main, .stApp {
@@ -20,20 +40,13 @@ body, .main, .stApp {
     color: #eaeaea !important;
     font-family: 'Segoe UI', sans-serif;
 }
-[data-testid="stSidebar"] {
-    background-color: #161b22 !important;
-}
 h1, h2, h3, h4, h5, h6, p, label, span, div {
-    color: #eaeaea !important;
+    color: #af49d4  !important;
 }
 .stButton>button, .stDownloadButton>button {
     background-color: #238636 !important;
     color: white !important;
-    border: none;
     border-radius: 8px;
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-    transition: all 0.3s ease-in-out;
 }
 .stButton>button:hover, .stDownloadButton>button:hover {
     background-color: #2ea043 !important;
@@ -42,13 +55,10 @@ textarea, input, select {
     background-color: #1c2128 !important;
     color: white !important;
     border: 1px solid #30363d !important;
-    border-radius: 6px;
-    padding: 0.5rem;
 }
 [data-testid="fileUploaderDropzone"] {
     background-color: #1c2128 !important;
     border: 2px dashed #444c56 !important;
-    border-radius: 6px;
 }
 </style>
 """
@@ -60,53 +70,34 @@ body, .main, .stApp {
     color: #1c1c1c !important;
     font-family: 'Segoe UI', sans-serif;
 }
-[data-testid="stSidebar"] {
-    background-color: #ffffff !important;
-}
 h1, h2, h3, h4, h5, h6, p, label, span, div {
-    color: #1c1c1c !important;
+    color: #8f34cf !important;
 }
 .stButton>button, .stDownloadButton>button {
-    background-color: #0078d4 !important;
+    background-color: #a5c2d7 !important;
     color: white !important;
-    border: none;
     border-radius: 8px;
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 .stButton>button:hover, .stDownloadButton>button:hover {
-    background-color: #005ea2 !important;
-    transform: scale(1.02);
+    background-color: #004080 !important;
 }
 textarea, input, select {
     background-color: #ffffff !important;
-    color: #1c1c1c !important;
+    color: black !important;
     border: 1px solid #ccc !important;
-    border-radius: 6px;
-    padding: 0.5rem;
 }
 [data-testid="fileUploaderDropzone"] {
     background-color: #ffffff !important;
     border: 2px dashed #ccc !important;
-    border-radius: 6px;
 }
 </style>
 """
 
-# Sidebar
-with st.sidebar:
-    theme = st.radio("🎨 Select Theme", ["Light", "Dark"])
-
-
-# Apply CSS
 st.markdown(dark_css if theme == "Dark" else light_css, unsafe_allow_html=True)
 
-# Session state for input
+# Session state setup
 if "user_input" not in st.session_state:
     st.session_state.user_input = ""
-
-
 
 # Top menu
 selected = option_menu(
@@ -118,8 +109,7 @@ selected = option_menu(
     orientation="horizontal",
 )
 
-
-# Input modes
+# Input methods
 if selected == "Type Text":
     st.header("✍️ Type Your Text")
     text = st.text_area("Enter text here", height=150)
@@ -150,7 +140,7 @@ elif selected == "Voice Input":
             except:
                 st.error("Could not process your voice input.")
 
-# Detect button
+# Language Detection
 if st.button("🧠 Detect Language"):
     user_input = st.session_state.user_input.strip()
     if not user_input:

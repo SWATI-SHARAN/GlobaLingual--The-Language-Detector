@@ -1,21 +1,33 @@
 from langdetect import detect_langs
-from langcodes import Language
+from deep_translator import GoogleTranslator
 
 def detect_language_with_confidence(text):
     try:
-        detections = detect_langs(text)
-        results = []
-        for item in detections:
-            lang_code = item.lang
-            confidence = round(item.prob * 100, 2)
-            lang_name = Language.get(lang_code).display_name()
-            results.append((lang_code, lang_name, confidence))
-        return results
-    except Exception:
+        detected = detect_langs(text)
+        return [(d.lang, language_code_to_name(d.lang), round(d.prob * 100, 2)) for d in detected]
+    except:
         return []
 
-def translate_language_name(name, target_lang_code):
+def language_code_to_name(lang_code):
+    mapping = {
+        "en": "English",
+        "es": "Spanish",
+        "fr": "French",
+        "de": "German",
+        "hi": "Hindi",
+        "zh": "Chinese",
+        "ar": "Arabic",
+        "ru": "Russian",
+        "ja": "Japanese",
+        "pt": "Portuguese"
+    }
+    return mapping.get(lang_code, lang_code)
+
+def translate_language_name(language_name, target_lang_code="en"):
+    if target_lang_code == "en":
+        return language_name
     try:
-        return Language.find(name).translate(target_lang_code).display_name()
-    except:
-        return name
+        translated = GoogleTranslator(source='auto', target=target_lang_code).translate(language_name)
+        return translated
+    except Exception:
+        return f"{language_name} (untranslated)"
