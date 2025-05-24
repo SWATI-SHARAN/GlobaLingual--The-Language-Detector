@@ -36,29 +36,30 @@ target_lang_code = st.selectbox(
 dark_css = """
 <style>
 body, .main, .stApp {
-    background-color: #0d1117 !important;
-    color: #eaeaea !important;
+    /* Light pink gradient for dark mode background */
+    background: linear-gradient(135deg, #ffe6f0, #ffcce6);
+    color: #5a0030 !important;
     font-family: 'Segoe UI', sans-serif;
 }
 h1, h2, h3, h4, h5, h6, p, label, span, div {
-    color: #af49d4  !important;
+    color: #a33a5a !important;
 }
 .stButton>button, .stDownloadButton>button {
-    background-color: #238636 !important;
+    background-color: #d966a8 !important;
     color: white !important;
     border-radius: 8px;
 }
 .stButton>button:hover, .stDownloadButton>button:hover {
-    background-color: #2ea043 !important;
+    background-color: #c45393 !important;
 }
 textarea, input, select {
-    background-color: #1c2128 !important;
-    color: white !important;
-    border: 1px solid #30363d !important;
+    background-color: #ffe6f0 !important;
+    color: #5a0030 !important;
+    border: 1px solid #d97aa7 !important;
 }
 [data-testid="fileUploaderDropzone"] {
-    background-color: #1c2128 !important;
-    border: 2px dashed #444c56 !important;
+    background-color: #ffe6f0 !important;
+    border: 2px dashed #d97aa7 !important;
 }
 </style>
 """
@@ -66,29 +67,30 @@ textarea, input, select {
 light_css = """
 <style>
 body, .main, .stApp {
-    background-color: #f5f7fa !important;
-    color: #1c1c1c !important;
+    /* Light pink gradient for light mode background */
+    background: linear-gradient(135deg, #fff0f6, #ffd6e8);
+    color: #660033 !important;
     font-family: 'Segoe UI', sans-serif;
 }
 h1, h2, h3, h4, h5, h6, p, label, span, div {
-    color: #8f34cf !important;
+    color: #ec538a !important;
 }
 .stButton>button, .stDownloadButton>button {
-    background-color: #a5c2d7 !important;
+    background-color: #ece0e5 !important;
     color: white !important;
     border-radius: 8px;
 }
 .stButton>button:hover, .stDownloadButton>button:hover {
-    background-color: #004080 !important;
+    background-color: #cc5c8f !important;
 }
 textarea, input, select {
-    background-color: #ffffff !important;
-    color: black !important;
-    border: 1px solid #ccc !important;
+    background-color: #fff0f6 !important;
+    color: #660033 !important;
+    border: 1px solid #e599b2 !important;
 }
 [data-testid="fileUploaderDropzone"] {
-    background-color: #ffffff !important;
-    border: 2px dashed #ccc !important;
+    background-color: #fff0f6 !important;
+    border: 2px dashed #e599b2 !important;
 }
 </style>
 """
