@@ -87,4 +87,4 @@ st.markdown('<p class="center-text">Detect text, voice, and files across multipl
 
 # Button to navigate to main app
 if st.button("🚀 Start Detecting"):
-    st.switch_page("pages/app.py")
+    st.switch_page("pages/user_page.py")
