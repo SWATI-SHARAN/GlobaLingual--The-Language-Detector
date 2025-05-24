@@ -2,10 +2,10 @@
   <img src="logo.png" alt="Main Logo" width="320"/>
 </p>
 
-<h2>
+<h1>
   <img src="logo1.png" alt="Logo" width="90" height="90" align="center">
   GlobaLingual - The Language Detector
-</h2>
+</h1>
 
 
 
