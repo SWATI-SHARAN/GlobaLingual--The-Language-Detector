@@ -65,3 +65,36 @@ This is an intelligent, interactive web application that lets users **detect** t
 - The app uses both `googletrans` and `deep-translator` for robust multi-language translation support.
 
 ---
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/GlobaLingual.git
+cd GlobaLingual
+## 🚀 Getting Started
+```
+### 2. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+### 3. Run the App
+
+```bash
+streamlit run app.py
+```
+### 4. 🔊 Voice Input (Important)
+To use the Voice Input feature, you must install PyAudio.**It is not included by default in many environments it is also not included in the webiste hosted here.
+However you can use that feature by installing PyAudio on your system andd running it for using that fearture.**
+
+✅ PyAudio Installation Instructions
+For Windows:
+
+If direct installation fails, download the wheel file from:
+https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio
+
+Download the .whl matching your Python version (e.g., PyAudio‑0.2.11‑cp311‑cp311‑win_amd64.whl), then run:
+```bash
+pip install path_to_downloaded_whl_file.whl
+```
